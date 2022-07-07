@@ -1,0 +1,29 @@
+{
+  "name": "@paralin/ts-proto-common-types",
+  "version": "0.0.0",
+  "description": "Common types for ts-proto.",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "check": "npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write './!(vendor|dist)/**/(*.ts|*.tsx|*.html|*.css)'",
+    "prepare": "patch-package",
+    "precommit": "npm run format",
+    "gen": "make genproto"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "patch-package": "^6.4.7",
+    "prettier": "^2.7.1",
+    "ts-proto": "^1.117.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "long": "^5.2.0",
+    "protobufjs": "^6.11.3"
+  }
+}
