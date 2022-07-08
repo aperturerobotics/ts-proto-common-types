@@ -1,4 +1,4 @@
-module github.com/paralin/ts-proto-common-types
+module github.com/aperturerobotics/ts-proto-common-types
 
 go 1.18
 

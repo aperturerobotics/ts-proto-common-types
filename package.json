@@ -1,6 +1,6 @@
 {
-  "name": "@paralin/ts-proto-common-types",
-  "version": "0.0.0",
+  "name": "@aperturerobotics/ts-proto-common-types",
+  "version": "0.1.0",
   "description": "Common types for ts-proto.",
   "license": "MIT",
   "scripts": {
