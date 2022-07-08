@@ -3,6 +3,17 @@
   "version": "0.1.0",
   "description": "Common types for ts-proto.",
   "license": "MIT",
+  "files": [
+    "!**/*.tsbuildinfo",
+    "Makefile",
+    "README.md",
+    "go.mod",
+    "go.sum",
+    "google",
+    "patches",
+    "tsconfig.build.json",
+    "tsconfig.json"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "check": "npm run typecheck",
