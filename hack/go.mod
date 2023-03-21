@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/golangci/golangci-lint v1.52.0
+	github.com/golangci/golangci-lint v1.52.1
 	github.com/planetscale/vtprotobuf v0.4.0
 	github.com/psampaz/go-mod-outdated v0.9.0
 	github.com/square/goprotowrap v0.0.0-20220325193554-9257bb483144
