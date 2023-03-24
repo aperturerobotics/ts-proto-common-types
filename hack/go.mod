@@ -15,7 +15,7 @@ require (
 	google.golang.org/protobuf v1.30.0
 )
 
-require github.com/evanw/esbuild v0.17.12
+require github.com/evanw/esbuild v0.17.13
 
 require (
 	4d63.com/gocheckcompilerdirectives v1.2.1 // indirect
