@@ -1,6 +1,6 @@
 {
   "name": "@aperturerobotics/ts-proto-common-types",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Common types for ts-proto.",
   "license": "MIT",
   "files": [
