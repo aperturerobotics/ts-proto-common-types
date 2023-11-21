@@ -1,6 +1,6 @@
 {
   "name": "@aperturerobotics/ts-proto-common-types",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Common types for ts-proto.",
   "license": "MIT",
   "files": [
@@ -20,6 +20,8 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write './!(vendor|dist)/**/(*.ts|*.tsx|*.html|*.css)'",
     "prepare": "patch-package",
+    "patch": "patch-package --use-yarn --patch-dir ./node_modules/@aperturerobotics/ts-common/patches",
+    "prepare": "npm run patch && go mod vendor",
     "precommit": "npm run format",
     "gen": "make genproto"
   },
@@ -28,9 +30,11 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@aperturerobotics/ts-common": "^0.6.7",
     "patch-package": "^8.0.0",
     "prettier": "^3.0.0",
-    "ts-proto": "^1.117.0",
+    "ts-poet": "6.6.0",
+    "ts-proto": "^1.158.0",
     "typescript": "^5.0.0"
   },
   "dependencies": {
