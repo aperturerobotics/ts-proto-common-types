@@ -30,7 +30,7 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@aperturerobotics/ts-common": "^0.6.7",
+    "@aperturerobotics/ts-common": "^0.7.0",
     "patch-package": "^8.0.0",
     "prettier": "^3.0.0",
     "ts-poet": "6.6.0",
