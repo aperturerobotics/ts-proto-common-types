@@ -15,10 +15,11 @@
       "enabled": false
     },
     {
-      "matchPackagePatterns": [
-        "github.com/aperturerobotics/ts-proto-common-types"
+      "matchPackageNames": [
+        "github.com/aperturerobotics/ts-proto-common-types",
+        "@aperturerobotics/ts-proto-common-types",
+        "starpc"
       ],
-      "matchManagers": ["gomod"],
       "enabled": false
     }
   ]
