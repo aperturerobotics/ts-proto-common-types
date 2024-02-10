@@ -15,7 +15,8 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "clean": "rimraf ./google/**/*.pb.{js,d.ts}",
+    "build": "npm run clean && tsc --project tsconfig.build.json",
     "check": "npm run typecheck",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write './!(vendor|dist)/**/(*.ts|*.tsx|*.html|*.css)'",

@@ -1,8 +1,8 @@
 /* eslint-disable */
-import Long from "long";
-import _m0 from "protobufjs/minimal.js";
+import Long from 'long'
+import _m0 from 'protobufjs/minimal.js'
 
-export const protobufPackage = "google.protobuf";
+export const protobufPackage = 'google.protobuf'
 
 /**
  * Wrapper message for `double`.
@@ -11,7 +11,7 @@ export const protobufPackage = "google.protobuf";
  */
 export interface DoubleValue {
   /** The double value. */
-  value: number;
+  value: number
 }
 
 /**
@@ -21,7 +21,7 @@ export interface DoubleValue {
  */
 export interface FloatValue {
   /** The float value. */
-  value: number;
+  value: number
 }
 
 /**
@@ -31,7 +31,7 @@ export interface FloatValue {
  */
 export interface Int64Value {
   /** The int64 value. */
-  value: Long;
+  value: Long
 }
 
 /**
@@ -41,7 +41,7 @@ export interface Int64Value {
  */
 export interface UInt64Value {
   /** The uint64 value. */
-  value: Long;
+  value: Long
 }
 
 /**
@@ -51,7 +51,7 @@ export interface UInt64Value {
  */
 export interface Int32Value {
   /** The int32 value. */
-  value: number;
+  value: number
 }
 
 /**
@@ -61,7 +61,7 @@ export interface Int32Value {
  */
 export interface UInt32Value {
   /** The uint32 value. */
-  value: number;
+  value: number
 }
 
 /**
@@ -71,7 +71,7 @@ export interface UInt32Value {
  */
 export interface BoolValue {
   /** The bool value. */
-  value: boolean;
+  value: boolean
 }
 
 /**
@@ -81,7 +81,7 @@ export interface BoolValue {
  */
 export interface StringValue {
   /** The string value. */
-  value: string;
+  value: string
 }
 
 /**
@@ -91,56 +91,62 @@ export interface StringValue {
  */
 export interface BytesValue {
   /** The bytes value. */
-  value: Uint8Array;
+  value: Uint8Array
 }
 
 function createBaseDoubleValue(): DoubleValue {
-  return { value: 0 };
+  return { value: 0 }
 }
 
 export const DoubleValue = {
-  encode(message: DoubleValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: DoubleValue,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.value !== 0) {
-      writer.uint32(9).double(message.value);
+      writer.uint32(9).double(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): DoubleValue {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseDoubleValue();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseDoubleValue()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 9) {
-            break;
+            break
           }
 
-          message.value = reader.double();
-          continue;
+          message.value = reader.double()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<DoubleValue, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<DoubleValue | DoubleValue[]> | Iterable<DoubleValue | DoubleValue[]>,
+    source:
+      | AsyncIterable<DoubleValue | DoubleValue[]>
+      | Iterable<DoubleValue | DoubleValue[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [DoubleValue.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [DoubleValue.encode(p).finish()]
         }
       } else {
-        yield* [DoubleValue.encode(pkt as any).finish()];
+        yield* [DoubleValue.encode(pkt as any).finish()]
       }
     }
   },
@@ -148,88 +154,98 @@ export const DoubleValue = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, DoubleValue>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<DoubleValue> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [DoubleValue.decode(p)];
+        for (const p of pkt as any) {
+          yield* [DoubleValue.decode(p)]
         }
       } else {
-        yield* [DoubleValue.decode(pkt as any)];
+        yield* [DoubleValue.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): DoubleValue {
-    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 };
+    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 }
   },
 
   toJSON(message: DoubleValue): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (message.value !== 0) {
-      obj.value = message.value;
+      obj.value = message.value
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<DoubleValue>, I>>(base?: I): DoubleValue {
-    return DoubleValue.fromPartial(base ?? ({} as any));
+    return DoubleValue.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<DoubleValue>, I>>(object: I): DoubleValue {
-    const message = createBaseDoubleValue();
-    message.value = object.value ?? 0;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<DoubleValue>, I>>(
+    object: I,
+  ): DoubleValue {
+    const message = createBaseDoubleValue()
+    message.value = object.value ?? 0
+    return message
   },
-};
+}
 
 function createBaseFloatValue(): FloatValue {
-  return { value: 0 };
+  return { value: 0 }
 }
 
 export const FloatValue = {
-  encode(message: FloatValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: FloatValue,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.value !== 0) {
-      writer.uint32(13).float(message.value);
+      writer.uint32(13).float(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): FloatValue {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseFloatValue();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseFloatValue()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 13) {
-            break;
+            break
           }
 
-          message.value = reader.float();
-          continue;
+          message.value = reader.float()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<FloatValue, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<FloatValue | FloatValue[]> | Iterable<FloatValue | FloatValue[]>,
+    source:
+      | AsyncIterable<FloatValue | FloatValue[]>
+      | Iterable<FloatValue | FloatValue[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [FloatValue.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [FloatValue.encode(p).finish()]
         }
       } else {
-        yield* [FloatValue.encode(pkt as any).finish()];
+        yield* [FloatValue.encode(pkt as any).finish()]
       }
     }
   },
@@ -237,88 +253,98 @@ export const FloatValue = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, FloatValue>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<FloatValue> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [FloatValue.decode(p)];
+        for (const p of pkt as any) {
+          yield* [FloatValue.decode(p)]
         }
       } else {
-        yield* [FloatValue.decode(pkt as any)];
+        yield* [FloatValue.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): FloatValue {
-    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 };
+    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 }
   },
 
   toJSON(message: FloatValue): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (message.value !== 0) {
-      obj.value = message.value;
+      obj.value = message.value
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<FloatValue>, I>>(base?: I): FloatValue {
-    return FloatValue.fromPartial(base ?? ({} as any));
+    return FloatValue.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<FloatValue>, I>>(object: I): FloatValue {
-    const message = createBaseFloatValue();
-    message.value = object.value ?? 0;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<FloatValue>, I>>(
+    object: I,
+  ): FloatValue {
+    const message = createBaseFloatValue()
+    message.value = object.value ?? 0
+    return message
   },
-};
+}
 
 function createBaseInt64Value(): Int64Value {
-  return { value: Long.ZERO };
+  return { value: Long.ZERO }
 }
 
 export const Int64Value = {
-  encode(message: Int64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Int64Value,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (!message.value.isZero()) {
-      writer.uint32(8).int64(message.value);
+      writer.uint32(8).int64(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): Int64Value {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseInt64Value();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseInt64Value()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 8) {
-            break;
+            break
           }
 
-          message.value = reader.int64() as Long;
-          continue;
+          message.value = reader.int64() as Long
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<Int64Value, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<Int64Value | Int64Value[]> | Iterable<Int64Value | Int64Value[]>,
+    source:
+      | AsyncIterable<Int64Value | Int64Value[]>
+      | Iterable<Int64Value | Int64Value[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [Int64Value.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [Int64Value.encode(p).finish()]
         }
       } else {
-        yield* [Int64Value.encode(pkt as any).finish()];
+        yield* [Int64Value.encode(pkt as any).finish()]
       }
     }
   },
@@ -326,88 +352,103 @@ export const Int64Value = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, Int64Value>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<Int64Value> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [Int64Value.decode(p)];
+        for (const p of pkt as any) {
+          yield* [Int64Value.decode(p)]
         }
       } else {
-        yield* [Int64Value.decode(pkt as any)];
+        yield* [Int64Value.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): Int64Value {
-    return { value: isSet(object.value) ? Long.fromValue(object.value) : Long.ZERO };
+    return {
+      value: isSet(object.value) ? Long.fromValue(object.value) : Long.ZERO,
+    }
   },
 
   toJSON(message: Int64Value): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (!message.value.isZero()) {
-      obj.value = (message.value || Long.ZERO).toString();
+      obj.value = (message.value || Long.ZERO).toString()
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<Int64Value>, I>>(base?: I): Int64Value {
-    return Int64Value.fromPartial(base ?? ({} as any));
+    return Int64Value.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<Int64Value>, I>>(object: I): Int64Value {
-    const message = createBaseInt64Value();
-    message.value = (object.value !== undefined && object.value !== null) ? Long.fromValue(object.value) : Long.ZERO;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<Int64Value>, I>>(
+    object: I,
+  ): Int64Value {
+    const message = createBaseInt64Value()
+    message.value =
+      object.value !== undefined && object.value !== null
+        ? Long.fromValue(object.value)
+        : Long.ZERO
+    return message
   },
-};
+}
 
 function createBaseUInt64Value(): UInt64Value {
-  return { value: Long.UZERO };
+  return { value: Long.UZERO }
 }
 
 export const UInt64Value = {
-  encode(message: UInt64Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: UInt64Value,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (!message.value.isZero()) {
-      writer.uint32(8).uint64(message.value);
+      writer.uint32(8).uint64(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): UInt64Value {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUInt64Value();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseUInt64Value()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 8) {
-            break;
+            break
           }
 
-          message.value = reader.uint64() as Long;
-          continue;
+          message.value = reader.uint64() as Long
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<UInt64Value, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<UInt64Value | UInt64Value[]> | Iterable<UInt64Value | UInt64Value[]>,
+    source:
+      | AsyncIterable<UInt64Value | UInt64Value[]>
+      | Iterable<UInt64Value | UInt64Value[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [UInt64Value.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [UInt64Value.encode(p).finish()]
         }
       } else {
-        yield* [UInt64Value.encode(pkt as any).finish()];
+        yield* [UInt64Value.encode(pkt as any).finish()]
       }
     }
   },
@@ -415,88 +456,103 @@ export const UInt64Value = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, UInt64Value>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<UInt64Value> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [UInt64Value.decode(p)];
+        for (const p of pkt as any) {
+          yield* [UInt64Value.decode(p)]
         }
       } else {
-        yield* [UInt64Value.decode(pkt as any)];
+        yield* [UInt64Value.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): UInt64Value {
-    return { value: isSet(object.value) ? Long.fromValue(object.value) : Long.UZERO };
+    return {
+      value: isSet(object.value) ? Long.fromValue(object.value) : Long.UZERO,
+    }
   },
 
   toJSON(message: UInt64Value): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (!message.value.isZero()) {
-      obj.value = (message.value || Long.UZERO).toString();
+      obj.value = (message.value || Long.UZERO).toString()
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<UInt64Value>, I>>(base?: I): UInt64Value {
-    return UInt64Value.fromPartial(base ?? ({} as any));
+    return UInt64Value.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<UInt64Value>, I>>(object: I): UInt64Value {
-    const message = createBaseUInt64Value();
-    message.value = (object.value !== undefined && object.value !== null) ? Long.fromValue(object.value) : Long.UZERO;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<UInt64Value>, I>>(
+    object: I,
+  ): UInt64Value {
+    const message = createBaseUInt64Value()
+    message.value =
+      object.value !== undefined && object.value !== null
+        ? Long.fromValue(object.value)
+        : Long.UZERO
+    return message
   },
-};
+}
 
 function createBaseInt32Value(): Int32Value {
-  return { value: 0 };
+  return { value: 0 }
 }
 
 export const Int32Value = {
-  encode(message: Int32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Int32Value,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.value !== 0) {
-      writer.uint32(8).int32(message.value);
+      writer.uint32(8).int32(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): Int32Value {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseInt32Value();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseInt32Value()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 8) {
-            break;
+            break
           }
 
-          message.value = reader.int32();
-          continue;
+          message.value = reader.int32()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<Int32Value, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<Int32Value | Int32Value[]> | Iterable<Int32Value | Int32Value[]>,
+    source:
+      | AsyncIterable<Int32Value | Int32Value[]>
+      | Iterable<Int32Value | Int32Value[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [Int32Value.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [Int32Value.encode(p).finish()]
         }
       } else {
-        yield* [Int32Value.encode(pkt as any).finish()];
+        yield* [Int32Value.encode(pkt as any).finish()]
       }
     }
   },
@@ -504,88 +560,98 @@ export const Int32Value = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, Int32Value>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<Int32Value> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [Int32Value.decode(p)];
+        for (const p of pkt as any) {
+          yield* [Int32Value.decode(p)]
         }
       } else {
-        yield* [Int32Value.decode(pkt as any)];
+        yield* [Int32Value.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): Int32Value {
-    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 };
+    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 }
   },
 
   toJSON(message: Int32Value): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (message.value !== 0) {
-      obj.value = Math.round(message.value);
+      obj.value = Math.round(message.value)
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<Int32Value>, I>>(base?: I): Int32Value {
-    return Int32Value.fromPartial(base ?? ({} as any));
+    return Int32Value.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<Int32Value>, I>>(object: I): Int32Value {
-    const message = createBaseInt32Value();
-    message.value = object.value ?? 0;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<Int32Value>, I>>(
+    object: I,
+  ): Int32Value {
+    const message = createBaseInt32Value()
+    message.value = object.value ?? 0
+    return message
   },
-};
+}
 
 function createBaseUInt32Value(): UInt32Value {
-  return { value: 0 };
+  return { value: 0 }
 }
 
 export const UInt32Value = {
-  encode(message: UInt32Value, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: UInt32Value,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.value !== 0) {
-      writer.uint32(8).uint32(message.value);
+      writer.uint32(8).uint32(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): UInt32Value {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseUInt32Value();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseUInt32Value()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 8) {
-            break;
+            break
           }
 
-          message.value = reader.uint32();
-          continue;
+          message.value = reader.uint32()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<UInt32Value, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<UInt32Value | UInt32Value[]> | Iterable<UInt32Value | UInt32Value[]>,
+    source:
+      | AsyncIterable<UInt32Value | UInt32Value[]>
+      | Iterable<UInt32Value | UInt32Value[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [UInt32Value.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [UInt32Value.encode(p).finish()]
         }
       } else {
-        yield* [UInt32Value.encode(pkt as any).finish()];
+        yield* [UInt32Value.encode(pkt as any).finish()]
       }
     }
   },
@@ -593,88 +659,98 @@ export const UInt32Value = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, UInt32Value>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<UInt32Value> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [UInt32Value.decode(p)];
+        for (const p of pkt as any) {
+          yield* [UInt32Value.decode(p)]
         }
       } else {
-        yield* [UInt32Value.decode(pkt as any)];
+        yield* [UInt32Value.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): UInt32Value {
-    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 };
+    return { value: isSet(object.value) ? globalThis.Number(object.value) : 0 }
   },
 
   toJSON(message: UInt32Value): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (message.value !== 0) {
-      obj.value = Math.round(message.value);
+      obj.value = Math.round(message.value)
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<UInt32Value>, I>>(base?: I): UInt32Value {
-    return UInt32Value.fromPartial(base ?? ({} as any));
+    return UInt32Value.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<UInt32Value>, I>>(object: I): UInt32Value {
-    const message = createBaseUInt32Value();
-    message.value = object.value ?? 0;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<UInt32Value>, I>>(
+    object: I,
+  ): UInt32Value {
+    const message = createBaseUInt32Value()
+    message.value = object.value ?? 0
+    return message
   },
-};
+}
 
 function createBaseBoolValue(): BoolValue {
-  return { value: false };
+  return { value: false }
 }
 
 export const BoolValue = {
-  encode(message: BoolValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: BoolValue,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.value === true) {
-      writer.uint32(8).bool(message.value);
+      writer.uint32(8).bool(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): BoolValue {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBoolValue();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseBoolValue()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 8) {
-            break;
+            break
           }
 
-          message.value = reader.bool();
-          continue;
+          message.value = reader.bool()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<BoolValue, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<BoolValue | BoolValue[]> | Iterable<BoolValue | BoolValue[]>,
+    source:
+      | AsyncIterable<BoolValue | BoolValue[]>
+      | Iterable<BoolValue | BoolValue[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [BoolValue.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [BoolValue.encode(p).finish()]
         }
       } else {
-        yield* [BoolValue.encode(pkt as any).finish()];
+        yield* [BoolValue.encode(pkt as any).finish()]
       }
     }
   },
@@ -682,88 +758,100 @@ export const BoolValue = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, BoolValue>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<BoolValue> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [BoolValue.decode(p)];
+        for (const p of pkt as any) {
+          yield* [BoolValue.decode(p)]
         }
       } else {
-        yield* [BoolValue.decode(pkt as any)];
+        yield* [BoolValue.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): BoolValue {
-    return { value: isSet(object.value) ? globalThis.Boolean(object.value) : false };
+    return {
+      value: isSet(object.value) ? globalThis.Boolean(object.value) : false,
+    }
   },
 
   toJSON(message: BoolValue): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (message.value === true) {
-      obj.value = message.value;
+      obj.value = message.value
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<BoolValue>, I>>(base?: I): BoolValue {
-    return BoolValue.fromPartial(base ?? ({} as any));
+    return BoolValue.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<BoolValue>, I>>(object: I): BoolValue {
-    const message = createBaseBoolValue();
-    message.value = object.value ?? false;
-    return message;
+  fromPartial<I extends Exact<DeepPartial<BoolValue>, I>>(
+    object: I,
+  ): BoolValue {
+    const message = createBaseBoolValue()
+    message.value = object.value ?? false
+    return message
   },
-};
+}
 
 function createBaseStringValue(): StringValue {
-  return { value: "" };
+  return { value: '' }
 }
 
 export const StringValue = {
-  encode(message: StringValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.value !== "") {
-      writer.uint32(10).string(message.value);
+  encode(
+    message: StringValue,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
+    if (message.value !== '') {
+      writer.uint32(10).string(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): StringValue {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseStringValue();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseStringValue()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 10) {
-            break;
+            break
           }
 
-          message.value = reader.string();
-          continue;
+          message.value = reader.string()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<StringValue, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<StringValue | StringValue[]> | Iterable<StringValue | StringValue[]>,
+    source:
+      | AsyncIterable<StringValue | StringValue[]>
+      | Iterable<StringValue | StringValue[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [StringValue.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [StringValue.encode(p).finish()]
         }
       } else {
-        yield* [StringValue.encode(pkt as any).finish()];
+        yield* [StringValue.encode(pkt as any).finish()]
       }
     }
   },
@@ -771,88 +859,98 @@ export const StringValue = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, StringValue>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<StringValue> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [StringValue.decode(p)];
+        for (const p of pkt as any) {
+          yield* [StringValue.decode(p)]
         }
       } else {
-        yield* [StringValue.decode(pkt as any)];
+        yield* [StringValue.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): StringValue {
-    return { value: isSet(object.value) ? globalThis.String(object.value) : "" };
+    return { value: isSet(object.value) ? globalThis.String(object.value) : '' }
   },
 
   toJSON(message: StringValue): unknown {
-    const obj: any = {};
-    if (message.value !== "") {
-      obj.value = message.value;
+    const obj: any = {}
+    if (message.value !== '') {
+      obj.value = message.value
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<StringValue>, I>>(base?: I): StringValue {
-    return StringValue.fromPartial(base ?? ({} as any));
+    return StringValue.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<StringValue>, I>>(object: I): StringValue {
-    const message = createBaseStringValue();
-    message.value = object.value ?? "";
-    return message;
+  fromPartial<I extends Exact<DeepPartial<StringValue>, I>>(
+    object: I,
+  ): StringValue {
+    const message = createBaseStringValue()
+    message.value = object.value ?? ''
+    return message
   },
-};
+}
 
 function createBaseBytesValue(): BytesValue {
-  return { value: new Uint8Array(0) };
+  return { value: new Uint8Array(0) }
 }
 
 export const BytesValue = {
-  encode(message: BytesValue, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: BytesValue,
+    writer: _m0.Writer = _m0.Writer.create(),
+  ): _m0.Writer {
     if (message.value.length !== 0) {
-      writer.uint32(10).bytes(message.value);
+      writer.uint32(10).bytes(message.value)
     }
-    return writer;
+    return writer
   },
 
   decode(input: _m0.Reader | Uint8Array, length?: number): BytesValue {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBytesValue();
+    const reader =
+      input instanceof _m0.Reader ? input : _m0.Reader.create(input)
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = createBaseBytesValue()
     while (reader.pos < end) {
-      const tag = reader.uint32();
+      const tag = reader.uint32()
       switch (tag >>> 3) {
         case 1:
           if (tag !== 10) {
-            break;
+            break
           }
 
-          message.value = reader.bytes();
-          continue;
+          message.value = reader.bytes()
+          continue
       }
       if ((tag & 7) === 4 || tag === 0) {
-        break;
+        break
       }
-      reader.skipType(tag & 7);
+      reader.skipType(tag & 7)
     }
-    return message;
+    return message
   },
 
   // encodeTransform encodes a source of message objects.
   // Transform<BytesValue, Uint8Array>
   async *encodeTransform(
-    source: AsyncIterable<BytesValue | BytesValue[]> | Iterable<BytesValue | BytesValue[]>,
+    source:
+      | AsyncIterable<BytesValue | BytesValue[]>
+      | Iterable<BytesValue | BytesValue[]>,
   ): AsyncIterable<Uint8Array> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [BytesValue.encode(p).finish()];
+        for (const p of pkt as any) {
+          yield* [BytesValue.encode(p).finish()]
         }
       } else {
-        yield* [BytesValue.encode(pkt as any).finish()];
+        yield* [BytesValue.encode(pkt as any).finish()]
       }
     }
   },
@@ -860,84 +958,111 @@ export const BytesValue = {
   // decodeTransform decodes a source of encoded messages.
   // Transform<Uint8Array, BytesValue>
   async *decodeTransform(
-    source: AsyncIterable<Uint8Array | Uint8Array[]> | Iterable<Uint8Array | Uint8Array[]>,
+    source:
+      | AsyncIterable<Uint8Array | Uint8Array[]>
+      | Iterable<Uint8Array | Uint8Array[]>,
   ): AsyncIterable<BytesValue> {
     for await (const pkt of source) {
       if (globalThis.Array.isArray(pkt)) {
-        for (const p of (pkt as any)) {
-          yield* [BytesValue.decode(p)];
+        for (const p of pkt as any) {
+          yield* [BytesValue.decode(p)]
         }
       } else {
-        yield* [BytesValue.decode(pkt as any)];
+        yield* [BytesValue.decode(pkt as any)]
       }
     }
   },
 
   fromJSON(object: any): BytesValue {
-    return { value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(0) };
+    return {
+      value: isSet(object.value)
+        ? bytesFromBase64(object.value)
+        : new Uint8Array(0),
+    }
   },
 
   toJSON(message: BytesValue): unknown {
-    const obj: any = {};
+    const obj: any = {}
     if (message.value.length !== 0) {
-      obj.value = base64FromBytes(message.value);
+      obj.value = base64FromBytes(message.value)
     }
-    return obj;
+    return obj
   },
 
   create<I extends Exact<DeepPartial<BytesValue>, I>>(base?: I): BytesValue {
-    return BytesValue.fromPartial(base ?? ({} as any));
+    return BytesValue.fromPartial(base ?? ({} as any))
   },
-  fromPartial<I extends Exact<DeepPartial<BytesValue>, I>>(object: I): BytesValue {
-    const message = createBaseBytesValue();
-    message.value = object.value ?? new Uint8Array(0);
-    return message;
+  fromPartial<I extends Exact<DeepPartial<BytesValue>, I>>(
+    object: I,
+  ): BytesValue {
+    const message = createBaseBytesValue()
+    message.value = object.value ?? new Uint8Array(0)
+    return message
   },
-};
+}
 
 function bytesFromBase64(b64: string): Uint8Array {
   if (globalThis.Buffer) {
-    return Uint8Array.from(globalThis.Buffer.from(b64, "base64"));
+    return Uint8Array.from(globalThis.Buffer.from(b64, 'base64'))
   } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
+    const bin = globalThis.atob(b64)
+    const arr = new Uint8Array(bin.length)
     for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
+      arr[i] = bin.charCodeAt(i)
     }
-    return arr;
+    return arr
   }
 }
 
 function base64FromBytes(arr: Uint8Array): string {
   if (globalThis.Buffer) {
-    return globalThis.Buffer.from(arr).toString("base64");
+    return globalThis.Buffer.from(arr).toString('base64')
   } else {
-    const bin: string[] = [];
+    const bin: string[] = []
     arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
+      bin.push(globalThis.String.fromCharCode(byte))
+    })
+    return globalThis.btoa(bin.join(''))
   }
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Long ? string | number | Long : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends { $case: string } ? { [K in keyof Omit<T, "$case">]?: DeepPartial<T[K]> } & { $case: T["$case"] }
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Long
+    ? string | number | Long
+    : T extends globalThis.Array<infer U>
+      ? globalThis.Array<DeepPartial<U>>
+      : T extends ReadonlyArray<infer U>
+        ? ReadonlyArray<DeepPartial<U>>
+        : T extends { $case: string }
+          ? { [K in keyof Omit<T, '$case'>]?: DeepPartial<T[K]> } & {
+              $case: T['$case']
+            }
+          : T extends {}
+            ? { [K in keyof T]?: DeepPartial<T[K]> }
+            : Partial<T>
 
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+type KeysOfUnion<T> = T extends T ? keyof T : never
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never
+    }
 
 if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
+  _m0.util.Long = Long as any
+  _m0.configure()
 }
 
 function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
+  return value !== null && value !== undefined
 }
